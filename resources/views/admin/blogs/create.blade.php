@@ -135,7 +135,7 @@
 
                     <div class="bg-white border border-slate-200 rounded-[2rem] shadow-sm overflow-hidden">
 
-    {{- QUILL TOOLBAR --}}
+    {{-- QUILL TOOLBAR --}}
     <div id="toolbar" class="border-b border-slate-100 bg-slate-50 p-4">
 
         <span class="ql-formats">
@@ -177,21 +177,9 @@
     >
 
 </div>
-
-                    {{-- CONTENT --}}
-                    <textarea
-                        name="content"
-                        rows="18"
-                        required
-                        placeholder="Start writing your article..."
-                        class="w-full p-8 focus:outline-none text-slate-700 text-base leading-relaxed placeholder:text-slate-300 resize-none"
-                    >{{ old('content') }}</textarea>
-
                 </div>
 
             </div>
-
-
 
             {{-- SIDEBAR --}}
             <div class="space-y-6">
@@ -326,7 +314,7 @@
 
     </form>
 
-</div>\
+</div>
 
 @section('scripts')
 
