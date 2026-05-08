@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -7,18 +8,24 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class BlogController extends Controller {
-    public function index() {
+class BlogController extends Controller
+{
+    public function index()
+    {
         $blogs = Blog::with('category')->latest()->get();
+
         return view('admin.blogs.index', compact('blogs'));
     }
 
-    public function create() {
+    public function create()
+    {
         $categories = Category::all();
+
         return view('admin.blogs.create', compact('categories'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'title'             => 'required',
             'short_description' => 'required',
@@ -29,8 +36,22 @@ class BlogController extends Controller {
         ]);
 
         $imagePath = null;
+
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('blogs', 'public');
+
+            $image = $request->file('image');
+
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/storage/blogs';
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            $image->move($destinationPath, $imageName);
+
+            $imagePath = 'blogs/' . $imageName;
         }
 
         Blog::create([
@@ -43,15 +64,20 @@ class BlogController extends Controller {
             'image'             => $imagePath,
         ]);
 
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog created!');
+        return redirect()
+            ->route('admin.blogs.index')
+            ->with('success', 'Blog created!');
     }
 
-    public function edit(Blog $blog) {
+    public function edit(Blog $blog)
+    {
         $categories = Category::all();
+
         return view('admin.blogs.edit', compact('blog', 'categories'));
     }
 
-    public function update(Request $request, Blog $blog) {
+    public function update(Request $request, Blog $blog)
+    {
         $request->validate([
             'title'             => 'required',
             'short_description' => 'required',
@@ -62,8 +88,22 @@ class BlogController extends Controller {
         ]);
 
         $imagePath = $blog->image;
+
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('blogs', 'public');
+
+            $image = $request->file('image');
+
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/storage/blogs';
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            $image->move($destinationPath, $imageName);
+
+            $imagePath = 'blogs/' . $imageName;
         }
 
         $blog->update([
@@ -76,11 +116,15 @@ class BlogController extends Controller {
             'image'             => $imagePath,
         ]);
 
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog updated!');
+        return redirect()
+            ->route('admin.blogs.index')
+            ->with('success', 'Blog updated!');
     }
 
-    public function destroy(Blog $blog) {
+    public function destroy(Blog $blog)
+    {
         $blog->delete();
+
         return back()->with('success', 'Blog deleted!');
     }
 }

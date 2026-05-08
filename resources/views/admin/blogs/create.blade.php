@@ -70,6 +70,7 @@
 
 
     <form
+    id="blogForm"
         action="{{ route('admin.blogs.store') }}"
         method="POST"
         enctype="multipart/form-data"
@@ -315,7 +316,7 @@
     </form>
 
 </div>
-
+@endsection
 @section('scripts')
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
@@ -323,22 +324,28 @@
 <script>
 
 const quill = new Quill('#editor', {
-
     theme: 'snow',
-
     modules: {
         toolbar: '#toolbar'
     },
-
     placeholder: 'Start writing your article...'
-
 });
 
-document.querySelector('form').onsubmit = function () {
+const blogForm = document.getElementById('blogForm');
 
-    document.querySelector('#content').value =
-        quill.root.innerHTML;
-};
+blogForm.addEventListener('submit', function(e) {
+
+const content = quill.getText().trim();
+
+if(content.length === 0){
+    document.getElementById('content').value = '';
+} else {
+    document.getElementById('content').value = quill.root.innerHTML;
+}
+
+    console.log(content);
+
+});
 
 </script>
 

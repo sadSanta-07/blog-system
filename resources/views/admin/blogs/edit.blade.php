@@ -69,6 +69,7 @@
 
 
     <form
+    id="blogForm"
         action="{{ route('admin.blogs.update', $blog) }}"
         method="POST"
         enctype="multipart/form-data"
@@ -337,6 +338,7 @@
     </form>
 
 </div>
+@endsection
 
 @section('scripts')
 
@@ -375,11 +377,23 @@ const quill = new Quill('#editor', {
 
 });
 
-document.querySelector('form').onsubmit = function () {
+quill.root.innerHTML =
+`{!! addslashes(old('content', $blog->content)) !!}`;
 
-    document.querySelector('#content').value =
-        quill.root.innerHTML;
-};
+const blogForm = document.getElementById('blogForm');
+
+blogForm.addEventListener('submit', function() {
+
+    const content = quill.getText().trim();
+
+    if(content.length === 0){
+        document.getElementById('content').value = '';
+    } else {
+        document.getElementById('content').value =
+            quill.root.innerHTML;
+    }
+
+});
 
 </script>
 

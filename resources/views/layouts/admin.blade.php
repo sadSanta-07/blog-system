@@ -30,9 +30,7 @@
     {{-- SIDEBAR --}}
     <aside
     id="sidebar"
-    class="fixed lg:static top-0 left-0 z-50 h-screen w-72 bg-white border-r border-slate-200 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-y-auto"
->
-
+class="w-72 bg-white border-r border-slate-200 min-h-screen sticky top-0 flex flex-col">
         {{-- LOGO --}}
         <div class="h-20 px-8 flex items-center border-b border-slate-100">
 
@@ -141,10 +139,9 @@
 
 
     {{-- MAIN CONTENT --}}
-    <main class="flex-1 overflow-y-auto h-screen">
-
+<main class="flex-1 min-h-screen">
     {{-- MOBILE HEADER --}}
-<div class="lg:hidden sticky top-0 z-30 bg-white border-b border-slate-200 px-4 py-4 flex items-center justify-between">
+<div class="lg:hidden bg-white border-b border-slate-200 px-4 py-4 flex items-center justify-between">
 
     <button
         onclick="toggleSidebar()"
@@ -160,7 +157,7 @@
 </div>
 
         {{-- TOPBAR --}}
-        <div class="bg-white border-b border-slate-200 px-4 sm:px-6 lg:px-10 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="bg-white border-b border-slate-200 w-full px-4 sm:px-6 lg:px-10 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
             <div>
 
