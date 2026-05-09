@@ -8,7 +8,7 @@ This project allows users to view blogs while admins can manage blog posts throu
 
 ## Live Demo
 
-[View Live Project]([https://your-live-project-link.com](https://inkquill.infinityfree.me/))
+[View Live Project](https://inkquill.infinityfree.me)
 
 # Features
 
