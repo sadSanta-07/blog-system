@@ -63,10 +63,6 @@
                     class="flex items-center space-x-3"
                 >
 
-                    <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold shadow-lg">
-                        I
-                    </div>
-
                     <div>
                         <h1 class="text-lg font-extrabold tracking-tight">
                             Ink & Quill
