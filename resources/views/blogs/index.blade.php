@@ -758,7 +758,7 @@ grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
 <div class="container-fluid px-5">
 
         <span class="hero-badge">
-            Ink & Quill Insights
+            The Dev Digest
         </span>
 
         <h1 class="hero-title">
@@ -768,8 +768,7 @@ grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
         </h1>
 
         <p class="hero-desc">
-            Join 50,000+ software enthusiasts reading our weekly breakdown
-            of the most impactful shifts in the industry.
+                Thoughtful articles on tech, design, AI, startups, and digital culture.
         </p>
 
         <div class="subscribe-box">
